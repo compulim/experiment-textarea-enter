@@ -15,5 +15,21 @@
     "precommit:eslint": "eslint ./src/",
     "precommit:typescript": "tsc --project ./src/tsconfig.json",
     "start": "npm run build -- --define:IS_DEVELOPMENT=true --servedir=./public --watch"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
+    "esbuild": "^0.25.2",
+    "eslint": "^8.57.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-react": "^7.37.5",
+    "typescript": "^5.8.2"
   }
 }
