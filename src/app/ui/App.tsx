@@ -37,6 +37,20 @@ export default memo(function App() {
     [setSubmittedValue, setValue]
   );
 
+  const handleSubmitWithDelayClear = useCallback<FormEventHandler<HTMLFormElement>>(
+    event => {
+      event.preventDefault();
+
+      const formData = new FormData(event.currentTarget);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const entries = (formData as any).entries() as Iterable<readonly [string, string]>;
+
+      setSubmittedValue(JSON.stringify(Object.fromEntries(Array.from(entries)), null, 2));
+      setTimeout(() => setValue(''), 0);
+    },
+    [setSubmittedValue, setValue]
+  );
+
   return (
     <div>
       <h1>Text area</h1>
@@ -58,6 +72,17 @@ export default memo(function App() {
           name="send box"
           onInput={handleInput}
           onKeyPress={handleKeyDownAndKeyPress}
+          spellCheck={false}
+          value={value}
+        />
+      </form>
+      <h2>onKeyDown with delay clearing</h2>
+      <form onSubmit={handleSubmitWithDelayClear}>
+        <textarea
+          autoComplete="off"
+          name="send box"
+          onInput={handleInput}
+          onKeyDown={handleKeyDownAndKeyPress}
           spellCheck={false}
           value={value}
         />
